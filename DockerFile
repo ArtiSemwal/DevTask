@@ -4,4 +4,4 @@ RUN pip install boto3 pymysql
 
 COPY transfer.py /app/transfer.py
 
-CMD ["python", "/app/transfer.py"]
+CMD ["python", "/app/transfer.py","runserver","0.0.0.0:8080"]
