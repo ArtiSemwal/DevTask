@@ -4,7 +4,7 @@ pipeline {
     environment {
         ECR_REPOSITORY_NAME = 'task_ecr'
         ECR_URI = 'admin.dkr.ecr.your-region.amazonaws.com'
-        AWS_REGION = 'ap-south-1'
+        AWS_REGION = 'us-east-1'
     }
 
     stages {
