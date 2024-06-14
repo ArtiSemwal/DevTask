@@ -5,7 +5,7 @@ from botocore.exceptions import NoCredentialsError, PartialCredentialsError
 def read_from_s3(bucket_name, file_key):
     s3 = boto3.client('s3')
     try:
-        obj = s3.get_object(Bucket=bucket_name, Key=file_key)
+        obj = s3.get_object(Bucket=my-nbucket, Key=key_1)
         data = obj['Body'].read().decode('utf-8')
         return data
     except NoCredentialsError:
