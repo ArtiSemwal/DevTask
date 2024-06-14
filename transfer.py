@@ -12,12 +12,12 @@ def read_from_s3(bucket_name, file_key):
         print("Credentials not available")
         return None
 
-def write_to_rds(data, rds_host, db_user, db_password, db_name):
+def write_to_rds(data, rds_host, user_db, db_password, db-name):
     try:
         connection = pymysql.connect(host=rds_host,
-                                     user=db_user,
+                                     user=user_db,
                                      password=db_password,
-                                     database=db_name)
+                                     database=db1-name)
         cursor = connection.cursor()
         query = "INSERT INTO your_table_name (column1, column2) VALUES (%s, %s)"
         cursor.executemany(query, data)
@@ -33,7 +33,7 @@ def write_to_glue(data, database_name, table_name):
     glue = boto3.client('glue')
     try:
         response = glue.batch_create_partition(
-            DatabaseName=database_name,
+            DatabaseName=db_name,
             TableName=table_name,
             PartitionInputList=[{'Values': [data]}]
         )
@@ -43,14 +43,14 @@ def write_to_glue(data, database_name, table_name):
         return None
 
 def main():
-    bucket_name = 'my-task-bucket.com'
+    bucket_name = 'my-nbucket'
     file_key = 'b72186829f4efb1a3bab9478b41f3a11f209da050cb9b566d4a6eab027efda91'
-    rds_host = 'rds-task.ct68uiecqwr6.ap-south-1.rds.amazonaws.com'
+    rds_host = 'rds-task.ct68uiecqwr6.us-eas-1.rds.amazonaws.com'
     db_user = 'admin'
     db_password = 'admin123'
     db_name = 'task_db'
-    glue_database = 'task_glue_db'
-    glue_table = 'task'
+    glue_database = 'db_name'
+    glue_table = 'table_name'
 
     data = read_from_s3(bucket_name, file_key)
     if data:
