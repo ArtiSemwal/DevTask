@@ -55,17 +55,9 @@ def main():
     data = read_from_s3(bucket_name, file_key)
     if data:
         success = write_to_rds(data, rds_host, db_user, db_password, db_name)
-        print("Data pushed to RDS successfully.")
         if not success:
             write_to_glue(data, glue_database, glue_table)
-            print("Error pushing data to RDS:")
-            print("Trying to push data to Glue Database")
-            print("Data pushed to Glue Database successfully.")
-
-
 
 if __name__ == "__main__":
     main()
-
-
 
